@@ -1,0 +1,29 @@
+---
+- name: medha192057
+  hosts: client_1
+  become: true
+  become_user: root
+
+  tasks:
+  - name:  Install nginx
+    apt: name=nginx state=present update_cache=true
+
+  - name: Install PostgreSQL
+    apt: name=postgresql state=latest update_cache=true
+    tags: PostgreSQL
+
+  - name: Create user
+    user:
+     name: medha
+     password: $6$Lba3lcdC35$URlYokZS6Ic9Igjy.wD/VGCpOH5lUGjPIhtQYTc55y6HTL6KaIBkuzJ7oLQ/5eUuKp8qKNWf3M1EitPtJFu33.
+     state: present
+     shell: /bin/bash
+
+  - name: Creating directory
+    file:
+     path: /home/192057
+     state: directory
+
+  - name: uninstall nano
+    apt: name=nano state=absent
+
