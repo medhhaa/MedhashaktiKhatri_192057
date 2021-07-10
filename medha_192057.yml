@@ -25,5 +25,5 @@
      state: directory
 
   - name: uninstall nano
-    apt: name=nano state=absent
+    apt: name=nano state=absent 
 
